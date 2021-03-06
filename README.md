@@ -3,12 +3,13 @@
 
 ## Setup (for Mac)
 Change Directory to the root of this repository.
+
 Set up virtual environment
 ```
 source proj_env/bin/activate
 ```
 
-Install dependencies (if not alr done so)
+Install dependencies (Only for 1st time)
 ```
 pip3 install -r requirements.txt
 ```
