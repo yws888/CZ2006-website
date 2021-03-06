@@ -3,7 +3,6 @@
 
 ## Setup (for Mac)
 Change Directory to the root of this repository.
-<details>
 Set up virtual environment
 ```
 source proj_env/bin/activate
