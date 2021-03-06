@@ -37,7 +37,7 @@ def result(request):
     cpfBalance = request.POST['num3']
 
 
-    if monthlyIncome.isdigit() and savings.isdigit():
+    if monthlyIncome.isdigit() and savings.isdigit() and cpfBalance.isdigit():
         a = int(monthlyIncome)
         b = int(savings)
         c = int(cpfBalance)
