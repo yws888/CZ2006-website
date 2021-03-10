@@ -7,5 +7,6 @@ urlpatterns = [
     path('about/', views.about, name='househunt-about'),
     path('calculate/',views.calculate, name='househunt-calculate'),
     path('calculate/result/',views.result, name='househunt-result'),
+    path('visualise/',views.visualise, name='househunt-visualise'),
 
 ]

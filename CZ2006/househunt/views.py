@@ -31,6 +31,10 @@ def about(request):
 def calculate(request):
     return render(request, "househunt/calculate.html", {'title': 'Calculate'})
 
+
+def visualise(request):
+    return render(request, "househunt/visualisations.html", {'title': 'Visualisations'})
+
 def result(request):
     monthlyIncome = request.POST['num1']
     savings = request.POST['num2']
