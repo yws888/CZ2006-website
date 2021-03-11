@@ -1,0 +1,30 @@
+{% extends "househunt/base.html" %}
+
+{% block content %}
+
+<br><br>
+
+<form action='result/' method='get' >
+        {% csrf_token %}
+        <br><br>
+
+        <!-- <select>
+            <option disabled="true" selected> -- Select Type --</option>
+            <option value=""> -- any --</option>
+            <option value='1 ROOM'> 1 ROOM </option>
+            <option value='2 ROOM'> 2 ROOM </option>
+            <option value='3 ROOM'> 3 ROOM </option>
+            <option value='4 ROOM'> 4 ROOM </option>
+            <option value='5 ROOM'> 5 ROOM </option>
+            <option value='EXECUTIVE'> EXECUTIVE </option>
+            <option value='MULTI-GENERATION'> MULTI-GENERATION </option>
+        </select> -->
+        {{ form.as_p }}
+        <!-- Enter resale Price: <input name="input" type="number"> -->
+
+        <input type="submit">
+
+</form>
+
+
+{% endblock %}
