@@ -1,0 +1,15 @@
+{% extends "househunt/base.html" %}
+{% block content %}
+
+    <br>
+    <h1>Resale price by year</h1>
+    <br>
+    {% load static %}
+
+    <a href="{% url 'househunt-visualise' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">Return</a>
+    <img src="{% static 'year.png' %}">
+    <br>
+    <br>
+
+    
+{% endblock content %}
