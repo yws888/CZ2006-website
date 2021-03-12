@@ -10,8 +10,12 @@ urlpatterns = [
     path('calculate/',views.calculate, name='househunt-calculate'),
     path('calculate/result/',views.result, name='househunt-result'),
     path('visualise/',views.visualise, name='househunt-visualise'),
+    path('visualise/town/',views.visualise_town, name='househunt-visualise-town'),
+    path('visualise/flat-type/',views.visualise_flat_type, name='househunt-visualise-flat-type'),
+    path('visualise/year/',views.visualise_year, name='househunt-visualise-year'),
     path('search/',views.search, name='househunt-search'),
     path('search/result/',views.search_result, name='househunt-search-result'),
+    
     # path('search/result/',HDBResaleFlatView.as_view(), name='househunt-search-result'),
 
 ]

@@ -19,10 +19,17 @@ def home(request):
 def about(request):
     return render(request, 'househunt/about.html', {'title': 'About'}) #add title if u want a title for the page
 
-
 def visualise(request):
-    return render(request, "househunt/visualisations.html", {'title': 'Visualisations'})
+    return render(request, "househunt/visualise.html", {'title': 'Visualisations'})
 
+def visualise_town(request):
+    return render(request, "househunt/visualise-town.html", {'title': 'Town time'})
+
+def visualise_flat_type(request):
+    return render(request, "househunt/visualise-flat-type.html", {'title': 'Flat type time'})
+
+def visualise_year(request):
+    return render(request, "househunt/visualise-year.html", {'title': 'Year time'})
 
 def calculate(request):
     return render(request, "househunt/calculate.html", {'title': 'Calculate'})
