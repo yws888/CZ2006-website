@@ -4,6 +4,7 @@ from .models import HDBResaleFlat
 from django.views.generic import ListView
 from django_tables2 import SingleTableView
 from .tables import HDBResaleFlatTable
+from .datavis import readData, barPriceVsTown, barPriceVsFlatType, pointPriceVsYear
 from django.template import RequestContext
 
 from django.http import HttpResponse
@@ -23,12 +24,15 @@ def visualise(request):
     return render(request, "househunt/visualise.html", {'title': 'Visualisations'})
 
 def visualise_town(request):
+    barPriceVsTown(readData())
     return render(request, "househunt/visualise-town.html", {'title': 'Town time'})
 
 def visualise_flat_type(request):
+    barPriceVsFlatType(readData())
     return render(request, "househunt/visualise-flat-type.html", {'title': 'Flat type time'})
 
 def visualise_year(request):
+    pointPriceVsYear(readData())
     return render(request, "househunt/visualise-year.html", {'title': 'Year time'})
 
 def calculate(request):
