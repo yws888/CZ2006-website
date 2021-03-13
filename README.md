@@ -18,3 +18,22 @@ Start the server
 ```
 python3 CZ2006/manage.py runserver
 ```
+
+## Setup (for Windows)
+Change Directory to the root of this repository.
+
+Set up virtual environment
+```
+py -m venv env
+```
+
+Install dependencies (Only for 1st time or if there are additional dependencies added)
+```
+py -m pip install -r requirements.txt
+```
+
+Start the server
+```
+py CZ2006/manage.py runserver
+```
+
