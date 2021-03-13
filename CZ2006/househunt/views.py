@@ -107,3 +107,24 @@ class HDBResaleFlatView(SingleTableView):
 #         table_data = HDBResaleFlat.objects.filter(flatType = flatTypeInput)
 #         #return render(request, self.template_name, {table_data})
 #         return table_data
+
+
+
+def map(request):
+    flat = HDBResaleFlat.objects.get(id=6888)
+
+    context = {
+        'town': flat.town,
+        'streetName': flat.streetName, }
+
+
+    return render(request, "househunt/map.html", context)
+
+
+def estimate(request):
+    form = HDBSearchForm(request.GET or None)
+
+    context = {
+        'form': form,
+        'title': 'Estimate', }
+    return render(request, "househunt/estimate.html", context)
