@@ -8,8 +8,8 @@ class HDBSearchForm(forms.ModelForm):
 
         fields = [
             'flatType',
-             'remainingLease',
-             'resalePrice',
+            'remainingLease',
+            'resalePrice',
             'town',
             # 'monthOfSale',
             # 'storeyRange',
@@ -17,7 +17,9 @@ class HDBSearchForm(forms.ModelForm):
             'flatModel'
         ]
         labels = {
-            "flatType": "Flat Type"
+            "flatType": "Flat Type",
+            "floorArea": "Minimum floor area (in sqm)",
+            "resalePrice": "Maximum resale Price"
         }
 #
 # class RawHDBSearchForm(forms.Form):

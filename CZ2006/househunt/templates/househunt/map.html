@@ -1,0 +1,20 @@
+{% extends "househunt/base.html" %}
+
+{% block content %}
+
+<script type="text/javascript">
+var town = "{{town}}";
+var streetName = "{{streetName}}";
+
+//var x = "Yishun" + "," + "Yishun Ave 11";
+var x = town + "," + streetName;
+
+var requestlink ="https://maps.googleapis.com/maps/api/streetview?size=400x400&location=" + x + "&key=AIzaSyAT5ls2tvRCs9x0p4aVd7984HNocfpAOXE";
+
+var y = document.createElement("IMG");
+y.setAttribute("src",requestlink);
+y.setAttribute("alt", "MapImage")
+document.body.appendChild(y);
+
+</script>
+{% endblock %}

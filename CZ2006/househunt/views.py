@@ -70,7 +70,7 @@ def search_result(request):
 
     if (request.GET.get('resalePrice')) is not '':
         resalePriceInput = int(request.GET.get('resalePrice'))
-        queryset = queryset.filter(resalePrice__lte = resalePriceInput) # list of objects
+        queryset = queryset.filter(resalePrice__lte = resalePriceInput) # return flats with resalePrice <= input
 
     if (request.GET.get('town')) is not '':
         townInput = request.GET.get('town')
@@ -78,7 +78,7 @@ def search_result(request):
 
     if (request.GET.get('floorArea')) is not '':
         floorAreaInput = int(request.GET.get('floorArea'))
-        queryset = queryset.filter(floorArea__lte = floorAreaInput) # list of objects
+        queryset = queryset.filter(floorArea__gte = floorAreaInput) # return flats with floorArea >= input
 
     if (request.GET.get('flatModel')) is not '':
         flatModelInput = request.GET.get('flatModel')
@@ -100,3 +100,14 @@ class HDBResaleFlatView(SingleTableView):
 #         table_data = HDBResaleFlat.objects.filter(flatType = flatTypeInput)
 #         #return render(request, self.template_name, {table_data})
 #         return table_data
+
+
+def map(request):
+    # queryset = HDBResaleFlat.objects.first()
+
+    context = {
+        'town': 'Yishun',
+        'streetName': 'Yishun Ave 11', }
+
+
+    return render(request, "househunt/map.html", context)
