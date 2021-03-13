@@ -35,7 +35,7 @@ def readData():
     # columns to read from file
     col_list = ['resale_price','town','flat_type','month']
     #fileName = input("Enter the csv file name: ")
-    fileName = "CZ2006\\utility\\approval-date-2000-feb-2012"
+    fileName = "CZ2006\\utility\\resale-flat-prices"
     csvData = pd.read_csv(fileName + '.csv', usecols=col_list)
 
     # convert month to year
@@ -68,10 +68,10 @@ def pointPriceVsYear(csvData):
     
 
 #for debugging
-def main():
+'''def main():
     data = readData()
-    #barPriceVsTown(data)
-    #barPriceVsFlatType(data)
-    pointPriceVsYear(data)
+    barPriceVsTown(data)
+    barPriceVsFlatType(data)
+    pointPriceVsYear(data)'''
 #if __name__ == "__main__":
-main()
+    #main()
