@@ -1,0 +1,14 @@
+{% extends "househunt/base.html" %}
+
+{% block content %}
+
+<h3> Estimated Resale Price = {{estimatedResalePrice}} </h3>
+
+
+<br>
+<br>
+<a href="{% url 'househunt-search' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">Search for a flat</a>
+<br>
+<br>
+
+{% endblock %}

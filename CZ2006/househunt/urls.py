@@ -17,6 +17,7 @@ urlpatterns = [
     path('search/result/',views.search_result, name='househunt-search-result'),
 
     path('estimate/',views.estimate, name='househunt-estimate'),
+    path('estimate/result/',views.estimate_result, name='househunt-estimate-result'),
     #path('search/result/',HDBResaleFlatView.as_view(), name='househunt-search-result'),
     path('map/',views.map, name='househunt-map'),
 

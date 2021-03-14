@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import HDBSearchForm
+from .forms import HDBSearchForm, HDBEstimateForm
 from .models import HDBResaleFlat
 from django.views.generic import ListView
 from django_tables2 import SingleTableView
@@ -7,7 +7,7 @@ from .tables import HDBResaleFlatTable
 from .datavis import readData, barPriceVsTown, barPriceVsFlatType, pointPriceVsYear
 from django.template import RequestContext
 
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 
 
 def home(request):
@@ -126,9 +126,32 @@ def map(request):
 
 
 def estimate(request):
-    form = HDBSearchForm(request.GET or None)
+    form = HDBEstimateForm(request.POST or None)
+
+    # if request.method == 'POST':
+    #     form = HDBEstimateForm(request.POST)
+    #     if form.is_valid():
+    #     # The form has been submitted and is valid
+    #     # process the data and redirect to a "thank you" page
+    #         data = form.cleaned_data
+    #         return HttpResponseRedirect('/result/')
+    # else:
+    #     # just display an empty form
+    #     form = HDBEstimateForm()
 
     context = {
         'form': form,
         'title': 'Estimate', }
     return render(request, "househunt/estimate.html", context)
+
+def estimate_result(request):
+    flatModelInput = request.POST['flatModel']
+    townInput = request.POST['town']
+    flatTypeInput = request.POST['flatType']
+    floorAreaInput = int(request.POST['floorArea'])
+    remainingLeaseInput = float(request.POST['remainingLease'])
+
+    estimatedResalePrice = 300 + 300*floorAreaInput + 3000*remainingLeaseInput + 100000
+
+
+    return render(request, "househunt/estimate_result.html", {"estimatedResalePrice": estimatedResalePrice})

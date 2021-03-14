@@ -4,10 +4,9 @@
 
 <br><br>
 
-<form action='result/' method='get' >
-        {% csrf_token %}
+<form action='result/' method='post' >
         <br><br>
-
+        {% csrf_token %}
 
         {{ form.as_p }}
 
