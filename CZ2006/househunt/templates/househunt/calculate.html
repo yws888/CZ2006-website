@@ -7,9 +7,10 @@
 <form action="result/" method="POST">
     {% csrf_token %}
 
-    Enter monthly Income: <input type="text" name="num1" placeholder="enter monthly income"><br><br>
+    <!-- Enter monthly Income: <input type="text" name="num1" placeholder="enter monthly income"><br><br>
     Enter savings: <input type="text" name="num2"><br><br>   
-    Enter CPF Balance: <input type="text" name="num3"><br><br>
+    Enter CPF Balance: <input type="text" name="num3"><br><br> -->
+    {{ form.as_p }}
 
     <input type="submit">
 </form>

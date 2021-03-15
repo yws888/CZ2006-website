@@ -1,14 +1,8 @@
 {% extends "househunt/base.html" %}
 
 {% block content %}
-{% if valid %}
 <h1> Maximum affordable price = {{result}} </h1>
 <a href="{% url 'househunt-calculate' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">Calculate maximum affordable price</a>
-
-{% else %}
-<h1> Invalid input. Please try again. </h1>
-<a href="{% url 'househunt-calculate' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">Calculate maximum affordable price</a>
-
-{% endif %}
+<a href="{% url 'househunt-search' %}{{result}}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">Search for a flat with this price</a>
 
 {% endblock %}

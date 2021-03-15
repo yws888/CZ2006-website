@@ -14,11 +14,12 @@ urlpatterns = [
     path('visualise/flat-type/',views.visualise_flat_type, name='househunt-visualise-flat-type'),
     path('visualise/year/',views.visualise_year, name='househunt-visualise-year'),
     path('search/',views.search, name='househunt-search'),
+    path('search/<int:price>',views.searchPrice, name='househunt-search'),
     path('search/result/',views.search_result, name='househunt-search-result'),
 
     path('estimate/',views.estimate, name='househunt-estimate'),
     path('estimate/result/',views.estimate_result, name='househunt-estimate-result'),
     #path('search/result/',HDBResaleFlatView.as_view(), name='househunt-search-result'),
-    path('map/',views.map, name='househunt-map'),
+    path('map/<int:id>/',views.map, name='househunt-map'),
 
 ]

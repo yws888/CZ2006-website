@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="679d9bef-b10c-4f74-b13d-0227de00df29" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/templates/househunt/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/templates/househunt/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/tables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/templates/househunt/calculate.html" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/templates/househunt/calculate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/templates/househunt/estimate.html" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/templates/househunt/estimate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/templates/househunt/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/templates/househunt/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/templates/househunt/result.html" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/templates/househunt/result.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/templates/househunt/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/templates/househunt/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

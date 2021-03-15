@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from .forms import HDBSearchForm, HDBEstimateForm
+from .forms import HDBSearchForm, HDBEstimateForm, CalculateForm
 from .models import HDBResaleFlat
 from django.views.generic import ListView
-from django_tables2 import SingleTableView
+from django_tables2 import SingleTableView, RequestConfig
+
 from .tables import HDBResaleFlatTable
 from .datavis import readData, barPriceVsTown, barPriceVsFlatType, pointPriceVsYear
 from django.template import RequestContext
@@ -36,36 +37,40 @@ def visualise_year(request):
     return render(request, "househunt/visualise-year.html", {'title': 'Year time'})
 
 def calculate(request):
-    return render(request, "househunt/calculate.html", {'title': 'Calculate'})
+    form = CalculateForm(request.POST or None)
+    context = {
+    'form': form,
+    'title': 'Calculate', }
+    return render(request, "househunt/calculate.html", context)
 
 def result(request):
-    monthlyIncome = request.POST['num1']
-    savings = request.POST['num2']
-    cpfBalance = request.POST['num3']
+    monthlyIncome = int(request.POST['monthlyIncome'])
+    savings = int(request.POST['savings'])
+    cpfBalance = int(request.POST['cpfBalance'])
 
+    res = monthlyIncome*12 + savings + cpfBalance
 
-    if monthlyIncome.isdigit() and savings.isdigit() and cpfBalance.isdigit():
-        a = int(monthlyIncome)
-        b = int(savings)
-        c = int(cpfBalance)
-        res = a*12 + b + c
-        valid = True
+    return render(request, "househunt/result.html", {"result": res})
 
-        return render(request, "househunt/result.html", {"result": res, "valid": valid})
-    else:
-        res = "Only digits are allowed"
-        valid = False
-        return render(request, "househunt/result.html", {"result": res, "valid": valid})
 
 
 def search(request):
     form = HDBSearchForm(request.GET or None)
+    # else:
+    #     form = HDBSearchForm(request.GET or None)
     # if form.is_valid():
     #      form.save()
     # #     form = HDBSearchForm()
     context = {
          'form': form,
           'title': 'Search', }
+    return render(request, "househunt/search.html", context)
+
+def searchPrice(request, price):
+    form = HDBSearchForm(request.GET or None, initial = {'resalePrice': price})
+    context = {
+        'form': form,
+        'title': 'Search', }
     return render(request, "househunt/search.html", context)
 
 def search_result(request):
@@ -97,6 +102,7 @@ def search_result(request):
 
     table = HDBResaleFlatTable(queryset)
     table.paginate(page=request.GET.get("page", 1), per_page=25)
+    RequestConfig(request).configure(table)
     return render(request,'househunt/search_result.html', {'table': table})
 
 class HDBResaleFlatView(SingleTableView):
@@ -114,8 +120,8 @@ class HDBResaleFlatView(SingleTableView):
 
 
 
-def map(request):
-    flat = HDBResaleFlat.objects.get(id=6888)
+def map(request, id):
+    flat = HDBResaleFlat.objects.get(id=id)
 
     context = {
         'town': flat.town,
@@ -127,17 +133,6 @@ def map(request):
 
 def estimate(request):
     form = HDBEstimateForm(request.POST or None)
-
-    # if request.method == 'POST':
-    #     form = HDBEstimateForm(request.POST)
-    #     if form.is_valid():
-    #     # The form has been submitted and is valid
-    #     # process the data and redirect to a "thank you" page
-    #         data = form.cleaned_data
-    #         return HttpResponseRedirect('/result/')
-    # else:
-    #     # just display an empty form
-    #     form = HDBEstimateForm()
 
     context = {
         'form': form,

@@ -38,7 +38,6 @@ class HDBEstimateForm(forms.ModelForm):
         fields = [
             'flatType',
             'remainingLease',
-           # 'resalePrice',
             'town',
             # 'monthOfSale',
             # 'storeyRange',
@@ -51,6 +50,12 @@ class HDBEstimateForm(forms.ModelForm):
             "floorArea": "Floor area (in sqm)",
             "flatModel": "Flat Model",
         }
+
+class CalculateForm(forms.Form):
+    monthlyIncome = forms.IntegerField(label='Enter Monthly Income:')
+    savings = forms.IntegerField(label='Enter savings:')
+    cpfBalance = forms.IntegerField(label='Enter CPF Balance:')
+
 #
 # class RawHDBSearchForm(forms.Form):
 #     flatType       = forms.CharField(label='Flat Type', widget=forms.TextInput(attrs={"placeholder": "Your title"}))
