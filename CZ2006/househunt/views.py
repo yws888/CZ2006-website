@@ -3,6 +3,7 @@ from .forms import HDBSearchForm, HDBEstimateForm, CalculateForm
 from .models import HDBResaleFlat
 from django.views.generic import ListView
 from django_tables2 import SingleTableView, RequestConfig
+from django.views import View
 
 from .tables import HDBResaleFlatTable
 from .datavis import readData, barPriceVsTown, barPriceVsFlatType, pointPriceVsYear
@@ -13,13 +14,19 @@ from django.http import HttpResponseRedirect
 
 def home(request):
     context = { #to pass info to template; can accses data within that template
-        #'posts': posts, #info assoc w each post
-        'title': 'Home'
+        'title': 'Home'  #add title if u want a title for the page
     }
     return render(request, 'househunt/home.html', context)
 
-def about(request):
-    return render(request, 'househunt/about.html', {'title': 'About'}) #add title if u want a title for the page
+
+class AboutView(View):
+    template_name = "househunt/about.html"
+    def get(self, request, id=None, *args, **kwargs):
+        context = {'title': 'About'}
+        return render(request, self.template_name, context)
+
+# def about(request):
+#     return render(request, 'househunt/about.html', {'title': 'About'})
 
 def visualise(request):
     return render(request, "househunt/visualise.html", {'title': 'Visualisations'})
@@ -107,7 +114,6 @@ def search_result(request):
 
 class HDBResaleFlatView(SingleTableView):
      model = HDBResaleFlat
-#    resalePrice__lt = 200000
      table_class = HDBResaleFlatTable
 #     template_name = 'househunt/search_result.html'
 #
@@ -126,8 +132,6 @@ def map(request, id):
     context = {
         'town': flat.town,
         'streetName': flat.streetName, }
-
-
     return render(request, "househunt/map.html", context)
 
 
@@ -147,6 +151,4 @@ def estimate_result(request):
     remainingLeaseInput = float(request.POST['remainingLease'])
 
     estimatedResalePrice = 300 + 300*floorAreaInput + 3000*remainingLeaseInput + 100000
-
-
     return render(request, "househunt/estimate_result.html", {"estimatedResalePrice": estimatedResalePrice})
