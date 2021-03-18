@@ -1,3 +1,5 @@
+import math
+
 from django.shortcuts import render
 from .forms import HDBSearchForm, HDBEstimateForm, CalculateForm
 from .models import HDBResaleFlat
@@ -52,14 +54,18 @@ def calculate(request):
 
 def result(request):
     monthlyIncome = int(request.POST['monthlyIncome'])
-    savings = int(request.POST['savings'])
-    cpfBalance = int(request.POST['cpfBalance'])
+    monthlyDebt = int(request.POST['monthlyDebt'])
+    interestRate = float(request.POST['interestRate'])
 
-    res = monthlyIncome*12 + savings + cpfBalance
+    # savings = int(request.POST['savings'])
+    # cpfBalance = int(request.POST['cpfBalance'])
 
+    # res = monthlyIncome*12 + savings + cpfBalance
+
+    res = (((monthlyIncome*0.28)-monthlyDebt)*12)/interestRate * (1-1/(math.pow((1+interestRate), 30)))
+    # res = float("{:.2f}".format(res))
+    res = int(res)
     return render(request, "househunt/result.html", {"result": res})
-
-
 
 def search(request):
     form = HDBSearchForm(request.GET or None)

@@ -53,9 +53,10 @@ class HDBEstimateForm(forms.ModelForm):
 
 class CalculateForm(forms.Form):
     monthlyIncome = forms.IntegerField(label='Enter Monthly Income:')
-    savings = forms.IntegerField(label='Enter savings:')
-    cpfBalance = forms.IntegerField(label='Enter CPF Balance:')
-
+    monthlyDebt = forms.IntegerField()
+    interestRate = forms.FloatField(label='Enter Loan Interest Rate (with 1 d.p.):')
+    # savings = forms.IntegerField(label='Enter savings:')
+    # cpfBalance = forms.IntegerField(label='Enter CPF Balance:')
 #
 # class RawHDBSearchForm(forms.Form):
 #     flatType       = forms.CharField(label='Flat Type', widget=forms.TextInput(attrs={"placeholder": "Your title"}))
