@@ -1,16 +1,19 @@
 from django.urls import path
 from . import views
-from .views import HDBResaleFlatView, AboutView
+from .views import (
+    HDBResaleFlatView, AboutView, 
+    Visualise, VisualiseTown, VisualiseFlatType, VisualiseYear
+)
 
 urlpatterns = [
     path('', views.home, name='househunt-home'),
     path('about/', AboutView.as_view(), name='househunt-about'),
     path('calculate/',views.calculate, name='househunt-calculate'),
     path('calculate/result/',views.result, name='househunt-result'),
-    path('visualise/',views.visualise, name='househunt-visualise'),
-    path('visualise/town/',views.visualise_town, name='househunt-visualise-town'),
-    path('visualise/flat-type/',views.visualise_flat_type, name='househunt-visualise-flat-type'),
-    path('visualise/year/',views.visualise_year, name='househunt-visualise-year'),
+    path('visualise/',Visualise.as_view(), name='househunt-visualise'),
+    path('visualise/town/',VisualiseTown.as_view(), name='househunt-visualise-town'),
+    path('visualise/flat-type/',VisualiseFlatType.as_view(), name='househunt-visualise-flat-type'),
+    path('visualise/year/',VisualiseYear.as_view(), name='househunt-visualise-year'),
     path('search/',views.search, name='househunt-search'),
     path('search/<int:price>',views.searchPrice, name='househunt-search'),
     path('search/result/',views.search_result, name='househunt-search-result'),
