@@ -34,20 +34,32 @@ class AboutView(View):
 # def about(request):
 #     return render(request, 'househunt/about.html', {'title': 'About'})
 
-def visualise(request):
-    return render(request, "househunt/visualise.html", {'title': 'Visualisations'})
+class Visualise(View):
+    template_name = "househunt/visualise.html"
+    def get(self, request, id=None, *args, **kwargs):
+        context = {'title': 'Visualisations'}
+        return render(request, self.template_name, context)
 
-def visualise_town(request):
-    barPriceVsTown(readData())
-    return render(request, "househunt/visualise-town.html", {'title': 'Town time'})
+class VisualiseTown(View):
+    template_name = "househunt/visualise-town.html"
+    def get(self, request, id=None, *args, **kwargs):
+        context = {'title': 'Flat Prices in each Town'}
+        barPriceVsTown(readData())        
+        return render(request, self.template_name, context)
 
-def visualise_flat_type(request):
-    barPriceVsFlatType(readData())
-    return render(request, "househunt/visualise-flat-type.html", {'title': 'Flat type time'})
+class VisualiseFlatType(View):
+    template_name = "househunt/visualise-flat-type.html"
+    def get(self, request, id=None, *args, **kwargs):
+        context = {'title': 'Flat Prices for each Flat Type'}
+        barPriceVsFlatType(readData())
+        return render(request, self.template_name, context)
 
-def visualise_year(request):
-    pointPriceVsYear(readData())
-    return render(request, "househunt/visualise-year.html", {'title': 'Year time'})
+class VisualiseYear(View):
+    template_name = "househunt/visualise-year.html"
+    def get(self, request, id=None, *args, **kwargs):
+        context = {'title': 'Flat Prices over the years'}
+        pointPriceVsYear(readData())
+        return render(request, self.template_name, context)
 
 def calculate(request):
     form = CalculateForm(request.POST or None)
