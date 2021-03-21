@@ -12,6 +12,10 @@ from .datavis import readData, barPriceVsTown, barPriceVsFlatType, pointPriceVsY
 from django.template import RequestContext
 
 from django.http import HttpResponseRedirect
+import sys
+sys.path.append("..") # Adds higher directory to python modules path.
+
+from utility.estimateResalePrice import calculatePrice
 
 
 def home(request):
@@ -155,6 +159,7 @@ def estimate_result(request):
     flatTypeInput = request.POST['flatType']
     floorAreaInput = int(request.POST['floorArea'])
     remainingLeaseInput = float(request.POST['remainingLease'])
+#calculatePrice(town, flatmodel, flattype, remainingl, floorarea):
+    estimatedResalePrice =int(calculatePrice(townInput, flatModelInput, flatTypeInput, remainingLeaseInput, floorAreaInput))
 
-    estimatedResalePrice = 300 + 300*floorAreaInput + 3000*remainingLeaseInput + 100000
     return render(request, "househunt/estimate_result.html", {"estimatedResalePrice": estimatedResalePrice})
