@@ -18,11 +18,18 @@ sys.path.append("..") # Adds higher directory to python modules path.
 from utility.estimateResalePrice import calculatePrice
 
 
-def home(request):
-    context = { #to pass info to template; can accses data within that template
-        'title': 'Home'  #add title if u want a title for the page
-    }
-    return render(request, 'househunt/home.html', context)
+class HomeView(View):
+    template_name = "househunt/home.html"
+    def get(self, request, id=None, *args, **kwargs):
+        context = {'title': 'Home'}
+        return render(request, self.template_name, context)
+
+# def home(request):
+#
+#     context = { #to pass info to template; can accses data within that template
+#         'title': 'Home'  #add title if u want a title for the page
+#     }
+#     return render(request, 'househunt/home.html', context)
 
 
 class AboutView(View):
@@ -75,8 +82,6 @@ def result(request):
 
     # savings = int(request.POST['savings'])
     # cpfBalance = int(request.POST['cpfBalance'])
-
-    # res = monthlyIncome*12 + savings + cpfBalance
 
     res = (((monthlyIncome*0.28)-monthlyDebt)*12)/interestRate * (1-1/(math.pow((1+interestRate), 30)))
     # res = float("{:.2f}".format(res))
@@ -133,20 +138,6 @@ def search_result(request):
     table.paginate(page=request.GET.get("page", 1), per_page=25)
     RequestConfig(request).configure(table)
     return render(request,'househunt/search_result.html', {'table': table})
-
-class HDBResaleFlatView(SingleTableView):
-     model = HDBResaleFlat
-     table_class = HDBResaleFlatTable
-#     template_name = 'househunt/search_result.html'
-#
-#     def get_queryset(self):
-#         query = self.request.GET.get('resalePrice')
-#         #flatTypeInput = request.POST['flatType']
-#         table_data = HDBResaleFlat.objects.filter(flatType = flatTypeInput)
-#         #return render(request, self.template_name, {table_data})
-#         return table_data
-
-
 
 def map(request, id):
     flat = HDBResaleFlat.objects.get(id=id)
