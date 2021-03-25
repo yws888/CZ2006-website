@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="679d9bef-b10c-4f74-b13d-0227de00df29" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/static/flat_type.png" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/static/flat_type.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/static/town.png" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/static/town.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/static/year.png" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/static/year.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="679d9bef-b10c-4f74-b13d-0227de00df29" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
