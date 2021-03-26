@@ -8,7 +8,7 @@ from django_tables2 import SingleTableView, RequestConfig
 from django.views import View
 
 from .tables import HDBResaleFlatTable
-from .datavis import readData, barPriceVsTown, barPriceVsFlatType, pointPriceVsYear
+from .datavis import readData, DataVisualisation, barPriceVsTown, barPriceVsFlatType, pointPriceVsYear
 from django.template import RequestContext
 
 from django.http import HttpResponseRedirect
@@ -50,23 +50,23 @@ class Visualise(View):
 class VisualiseTown(View):
     template_name = "househunt/visualise-town.html"
     def get(self, request, id=None, *args, **kwargs):
-        context = {'title': 'Flat Prices in each Town'}
-        barPriceVsTown(readData())        
-        return render(request, self.template_name, context)
+        context = readData(barPriceVsTown())
+        context.dataToGraph()
+        return render(request, self.template_name)
 
 class VisualiseFlatType(View):
     template_name = "househunt/visualise-flat-type.html"
     def get(self, request, id=None, *args, **kwargs):
-        context = {'title': 'Flat Prices for each Flat Type'}
-        barPriceVsFlatType(readData())
-        return render(request, self.template_name, context)
+        context = readData(barPriceVsFlatType())
+        context.dataToGraph()
+        return render(request, self.template_name)
 
 class VisualiseYear(View):
     template_name = "househunt/visualise-year.html"
     def get(self, request, id=None, *args, **kwargs):
-        context = {'title': 'Flat Prices over the years'}
-        pointPriceVsYear(readData())
-        return render(request, self.template_name, context)
+        context = readData(pointPriceVsYear())
+        context.dataToGraph()
+        return render(request, self.template_name)
 
 def calculate(request):
     form = CalculateForm(request.POST or None)
