@@ -78,7 +78,7 @@ def calculate(request):
 def result(request):
     monthlyIncome = int(request.POST['monthlyIncome'])
     monthlyDebt = int(request.POST['monthlyDebt'])
-    interestRate = float(request.POST['interestRate'])
+    interestRate = float(request.POST['interestRate'])/100
 
     # savings = int(request.POST['savings'])
     # cpfBalance = int(request.POST['cpfBalance'])
