@@ -68,37 +68,67 @@ class VisualiseYear(View):
         context.dataToGraph()
         return render(request, self.template_name)
 
-def calculate(request):
-    form = CalculateForm(request.POST or None)
-    context = {
-    'form': form,
-    'title': 'Calculate', }
-    return render(request, "househunt/calculate.html", context)
+class CalculateView(View):
+    template_name = "househunt/calculate.html"
+    def get(self, request, id=None, *args, **kwargs):
+        form = CalculateForm(request.GET or None)
 
-def result(request):
-    monthlyIncome = int(request.POST['monthlyIncome'])
-    monthlyDebt = int(request.POST['monthlyDebt'])
-    interestRate = float(request.POST['interestRate'])/100
+        context = {
+        'form': form,
+        'title': 'Calculate', }
+        return render(request, self.template_name,context )
+
+    # def calculate(self, request):
+    #     form = CalculateForm(request.GET or None)
+    #     context = {
+    #     'form': form,
+    #     'title': 'Calculate', }
+    #     return render(request, "househunt/calculate.html", context)
+
+class CalculateResultView(View):
+    template_name = "househunt/result.html"
+    def get(self, request, id=None, *args, **kwargs):
+        monthlyIncome = int(request.GET['monthlyIncome'])
+        monthlyDebt = int(request.GET['monthlyDebt'])
+        interestRate = float(request.GET['interestRate'])/100
 
     # savings = int(request.POST['savings'])
     # cpfBalance = int(request.POST['cpfBalance'])
 
-    res = (((monthlyIncome*0.28)-monthlyDebt)*12)/interestRate * (1-1/(math.pow((1+interestRate), 30)))
+        res = (((monthlyIncome*0.28)-monthlyDebt)*12)/interestRate * (1-1/(math.pow((1+interestRate), 30)))
     # res = float("{:.2f}".format(res))
-    res = int(res)
-    return render(request, "househunt/result.html", {"result": res})
+        res = int(res)
+        return render(request, "househunt/result.html", {"result": res})
 
-def search(request):
-    form = HDBSearchForm(request.GET or None)
-    # else:
-    #     form = HDBSearchForm(request.GET or None)
-    # if form.is_valid():
-    #      form.save()
-    # #     form = HDBSearchForm()
-    context = {
-         'form': form,
-          'title': 'Search', }
-    return render(request, "househunt/search.html", context)
+# def result(request):
+#     monthlyIncome = int(request.GET['monthlyIncome'])
+#     monthlyDebt = int(request.GET['monthlyDebt'])
+#     interestRate = float(request.GET['interestRate'])/100
+#
+#     # savings = int(request.POST['savings'])
+#     # cpfBalance = int(request.POST['cpfBalance'])
+#
+#     res = (((monthlyIncome*0.28)-monthlyDebt)*12)/interestRate * (1-1/(math.pow((1+interestRate), 30)))
+#     # res = float("{:.2f}".format(res))
+#     res = int(res)
+#     return render(request, "househunt/result.html", {"result": res})
+
+class SearchView(View):
+    template_name = "househunt/search.html"
+    def get(self, request, id=None, *args, **kwargs):
+        form = HDBSearchForm(request.GET or None)
+
+        context = {
+            'form': form,
+            'title': 'Search', }
+        return render(request, self.template_name,context )
+
+# def search(request):
+#     form = HDBSearchForm(request.GET or None)
+#     context = {
+#          'form': form,
+#           'title': 'Search', }
+#     return render(request, "househunt/search.html", context)
 
 def searchPrice(request, price):
     form = HDBSearchForm(request.GET or None, initial = {'resalePrice': price})
