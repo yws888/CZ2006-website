@@ -53,8 +53,8 @@ class HDBEstimateForm(forms.ModelForm):
 
 class CalculateForm(forms.Form):
     monthlyIncome = forms.IntegerField(label='Enter Monthly Income:')
-    monthlyDebt = forms.IntegerField()
-    interestRate = forms.FloatField(label='Enter Loan Interest Rate (with 1 d.p.):')
+    monthlyDebt = forms.IntegerField(label='Enter Monthly Debt:')
+    interestRate = forms.FloatField(label='Enter Loan Interest Rate % (to 1 d.p.):')
     # savings = forms.IntegerField(label='Enter savings:')
     # cpfBalance = forms.IntegerField(label='Enter CPF Balance:')
 #
