@@ -53,8 +53,8 @@ class barPriceVsTown(DataVisualisation):
         save_location = os.path.join(os.getcwd(), "CZ2006", "househunt", "static", "town.png")
         if not os.path.exists(save_location):
             sb.barplot(x='resale_price', y='town', data = data, ci=None)
-            plt.xlabel("Year of sale")
-            plt.xlabel("Town")
+            plt.xlabel("Resale Price ($)")
+            plt.ylabel("Town")
             # save plot to PNG for use in HTML
             plt.savefig(save_location, bbox_inches = "tight", dpi = 100)
             #fig.savefig("CZ2006\\househunt\\static\\town.png", bbox_inches = "tight", dpi = 100)
@@ -70,8 +70,8 @@ class barPriceVsFlatType(DataVisualisation):
         if not os.path.exists(save_location):
             home_types = ["1 ROOM", "2 ROOM", "3 ROOM", "4 ROOM", "5 ROOM", "EXECUTIVE", "MULTI-GENERATION"]
             sb.barplot(x='flat_type', y='resale_price', data=data, ci=None, order = home_types)
-            plt.xlabel("Year of sale")
             plt.xlabel("Flat type")
+            plt.ylabel("Resale Price ($)")
             # save plot to PNG for use in HTML    
             plt.savefig(save_location, bbox_inches = "tight", dpi = 100)
             #fig.savefig('CZ2006\\househunt\\static\\flat_type.png', bbox_inches = "tight", dpi = 100)
@@ -87,9 +87,9 @@ class pointPriceVsYear(DataVisualisation):
         if not os.path.exists(save_location):
             # convert month to year
             data['year']=data['month'].str[0:4]
-            sb.lineplot(x='year', y='resale_price', data=data, ci=None)
             plt.xlabel("Year of sale")
-            plt.xlabel("Resale Price")
+            plt.ylabel("Resale Price ($)")
+            sb.lineplot(x='year', y='resale_price', data=data, ci=None)
             # save plot to PNG for use in HTML
             plt.savefig(save_location, bbox_inches = "tight", dpi = 100)
             # fig.savefig('CZ2006\\househunt\\static\\year.png', bbox_inches = "tight", dpi = 100)
