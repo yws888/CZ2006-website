@@ -71,7 +71,7 @@ class VisualiseYear(View):
 class CalculateView(View):
     template_name = "househunt/calculate.html"
     def get(self, request, id=None, *args, **kwargs):
-        form = CalculateForm(request.GET or None)
+        form = CalculateForm(request.POST or None)
 
         context = {
         'form': form,
@@ -85,18 +85,16 @@ class CalculateView(View):
     #     'title': 'Calculate', }
     #     return render(request, "househunt/calculate.html", context)
 
-class CalculateResultView(View):
-    template_name = "househunt/result.html"
-    def get(self, request, id=None, *args, **kwargs):
-        monthlyIncome = int(request.GET['monthlyIncome'])
-        monthlyDebt = int(request.GET['monthlyDebt'])
-        interestRate = float(request.GET['interestRate'])/100
+    def post(self, request, id=None, *args, **kwargs):
+        monthlyIncome = int(request.POST['monthlyIncome'])
+        monthlyDebt = int(request.POST['monthlyDebt'])
+        interestRate = float(request.POST['interestRate'])/100
 
-    # savings = int(request.POST['savings'])
-    # cpfBalance = int(request.POST['cpfBalance'])
+        # savings = int(request.POST['savings'])
+        # cpfBalance = int(request.POST['cpfBalance'])
 
         res = (((monthlyIncome*0.28)-monthlyDebt)*12)/interestRate * (1-1/(math.pow((1+interestRate), 30)))
-    # res = float("{:.2f}".format(res))
+        # res = float("{:.2f}".format(res))
         res = int(res)
         return render(request, "househunt/result.html", {"result": res})
 
@@ -123,6 +121,14 @@ class SearchView(View):
             'title': 'Search', }
         return render(request, self.template_name,context )
 
+class SearchWithPriceView(View):
+    def get(self, request, price):
+        form = HDBSearchForm(request.GET or None, initial = {'resalePrice': price})
+        context = {
+        'form': form,
+        'title': 'Search', }
+        return render(request, "househunt/search.html", context)
+
 # def search(request):
 #     form = HDBSearchForm(request.GET or None)
 #     context = {
@@ -130,69 +136,95 @@ class SearchView(View):
 #           'title': 'Search', }
 #     return render(request, "househunt/search.html", context)
 
-def searchPrice(request, price):
-    form = HDBSearchForm(request.GET or None, initial = {'resalePrice': price})
-    context = {
-        'form': form,
-        'title': 'Search', }
-    return render(request, "househunt/search.html", context)
+# def searchPrice(request, price):
+#     form = HDBSearchForm(request.GET or None, initial = {'resalePrice': price})
+#     context = {
+#         'form': form,
+#         'title': 'Search', }
+#     return render(request, "househunt/search.html", context)
 
-def search_result(request):
-    queryset = HDBResaleFlat.objects.all()
+class SearchResultView(View):
 
-    if (request.GET.get('flatType')) is not '':
-        flatTypeInput = request.GET.get('flatType')
-        queryset = queryset.filter(flatType = flatTypeInput) # list of objects
+    def get(self, request):
+        queryset = HDBResaleFlat.objects.all()
 
-    if (request.GET.get('remainingLease')) is not '':
-        remainingLeaseInput = request.GET.get('remainingLease')
-        queryset = queryset.filter(remainingLease__lte = remainingLeaseInput) # list of objects
+        if (request.GET.get('flatType')) is not '':
+            flatTypeInput = request.GET.get('flatType')
+            queryset = queryset.filter(flatType = flatTypeInput) # list of objects
 
-    if (request.GET.get('resalePrice')) is not '':
-        resalePriceInput = int(request.GET.get('resalePrice'))
-        queryset = queryset.filter(resalePrice__lte = resalePriceInput) # return flats with resalePrice <= input
+        if (request.GET.get('remainingLease')) is not '':
+            remainingLeaseInput = request.GET.get('remainingLease')
+            queryset = queryset.filter(remainingLease__lte = remainingLeaseInput) # list of objects
 
-    if (request.GET.get('town')) is not '':
-        townInput = request.GET.get('town')
-        queryset = queryset.filter(town = townInput) # list of objects
+        if (request.GET.get('resalePrice')) is not '':
+            resalePriceInput = int(request.GET.get('resalePrice'))
+            queryset = queryset.filter(resalePrice__lte = resalePriceInput) # return flats with resalePrice <= input
 
-    if (request.GET.get('floorArea')) is not '':
-        floorAreaInput = int(request.GET.get('floorArea'))
-        queryset = queryset.filter(floorArea__gte = floorAreaInput) # return flats with floorArea >= input
+        if (request.GET.get('town')) is not '':
+            townInput = request.GET.get('town')
+            queryset = queryset.filter(town = townInput) # list of objects
 
-    if (request.GET.get('flatModel')) is not '':
-        flatModelInput = request.GET.get('flatModel')
-        queryset = queryset.filter(flatModel = flatModelInput) # list of objects
+        if (request.GET.get('floorArea')) is not '':
+            floorAreaInput = int(request.GET.get('floorArea'))
+            queryset = queryset.filter(floorArea__gte = floorAreaInput) # return flats with floorArea >= input
 
-    table = HDBResaleFlatTable(queryset)
-    table.paginate(page=request.GET.get("page", 1), per_page=25)
-    RequestConfig(request).configure(table)
-    return render(request,'househunt/search_result.html', {'table': table})
+        if (request.GET.get('flatModel')) is not '':
+            flatModelInput = request.GET.get('flatModel')
+            queryset = queryset.filter(flatModel = flatModelInput) # list of objects
 
-def map(request, id):
-    flat = HDBResaleFlat.objects.get(id=id)
+        table = HDBResaleFlatTable(queryset)
+        table.paginate(page=request.GET.get("page", 1), per_page=25)
+        RequestConfig(request).configure(table)
+        return render(request,'househunt/search_result.html', {'table': table})
 
-    context = {
-        'town': flat.town,
-        'streetName': flat.streetName, }
-    return render(request, "househunt/map.html", context)
+class MapView(View):
+    template_name = "househunt/map.html"
+
+    def get(self, request, id):
+        flat = HDBResaleFlat.objects.get(id=id)
+
+        context = {
+            'town': flat.town,
+            'streetName': flat.streetName, }
+        return render(request, self.template_name, context)
+
+class EstimateView(View):
+    template_name = "househunt/estimate.html"
+    def get(self, request, id=None, *args, **kwargs):
+        form = HDBEstimateForm(request.POST or None)
+
+        context = {
+            'form': form,
+            'title': 'Estimate', }
+        return render(request, self.template_name,context )
 
 
-def estimate(request):
-    form = HDBEstimateForm(request.POST or None)
+    def post(self, request):
+        flatModelInput = request.POST['flatModel']
+        townInput = request.POST['town']
+        flatTypeInput = request.POST['flatType']
+        floorAreaInput = int(request.POST['floorArea'])
+        remainingLeaseInput = float(request.POST['remainingLease'])
+        #calculatePrice(town, flatmodel, flattype, remainingl, floorarea):
+        estimatedResalePrice =int(calculatePrice(townInput, flatModelInput, flatTypeInput, remainingLeaseInput, floorAreaInput))
 
-    context = {
-        'form': form,
-        'title': 'Estimate', }
-    return render(request, "househunt/estimate.html", context)
+        return render(request, "househunt/estimate_result.html", {"estimatedResalePrice": estimatedResalePrice})
 
-def estimate_result(request):
-    flatModelInput = request.POST['flatModel']
-    townInput = request.POST['town']
-    flatTypeInput = request.POST['flatType']
-    floorAreaInput = int(request.POST['floorArea'])
-    remainingLeaseInput = float(request.POST['remainingLease'])
-#calculatePrice(town, flatmodel, flattype, remainingl, floorarea):
-    estimatedResalePrice =int(calculatePrice(townInput, flatModelInput, flatTypeInput, remainingLeaseInput, floorAreaInput))
+# def estimate(request):
+#     form = HDBEstimateForm(request.POST or None)
+#
+#     context = {
+#         'form': form,
+#         'title': 'Estimate', }
+#     return render(request, "househunt/estimate.html", context)
 
-    return render(request, "househunt/estimate_result.html", {"estimatedResalePrice": estimatedResalePrice})
+# def estimate_result(request):
+#     flatModelInput = request.POST['flatModel']
+#     townInput = request.POST['town']
+#     flatTypeInput = request.POST['flatType']
+#     floorAreaInput = int(request.POST['floorArea'])
+#     remainingLeaseInput = float(request.POST['remainingLease'])
+# #calculatePrice(town, flatmodel, flattype, remainingl, floorarea):
+#     estimatedResalePrice =int(calculatePrice(townInput, flatModelInput, flatTypeInput, remainingLeaseInput, floorAreaInput))
+#
+#     return render(request, "househunt/estimate_result.html", {"estimatedResalePrice": estimatedResalePrice})
