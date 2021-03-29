@@ -55,6 +55,7 @@ class CalculateForm(forms.Form):
     monthlyIncome = forms.IntegerField(label='Enter Monthly Income:')
     monthlyDebt = forms.IntegerField(label='Enter Monthly Debt:')
     interestRate = forms.FloatField(label='Enter Loan Interest Rate % (to 1 d.p.):')
+    downPayment = forms.IntegerField(label='Enter cash towards down payment:')
     # savings = forms.IntegerField(label='Enter savings:')
     # cpfBalance = forms.IntegerField(label='Enter CPF Balance:')
 #

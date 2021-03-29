@@ -89,11 +89,12 @@ class CalculateView(View):
         monthlyIncome = int(request.POST['monthlyIncome'])
         monthlyDebt = int(request.POST['monthlyDebt'])
         interestRate = float(request.POST['interestRate'])/100
+        downPayment = int(request.POST['downPayment'])
 
         # savings = int(request.POST['savings'])
         # cpfBalance = int(request.POST['cpfBalance'])
 
-        res = (((monthlyIncome*0.28)-monthlyDebt)*12)/interestRate * (1-1/(math.pow((1+interestRate), 30)))
+        res = (((monthlyIncome*0.28)-monthlyDebt)*12)/interestRate * (1-1/(math.pow((1+interestRate), 30))) + downPayment
         # res = float("{:.2f}".format(res))
         res = int(res)
         return render(request, "househunt/result.html", {"result": res})
@@ -208,6 +209,8 @@ class EstimateView(View):
         #calculatePrice(town, flatmodel, flattype, remainingl, floorarea):
         estimatedResalePrice =int(calculatePrice(townInput, flatModelInput, flatTypeInput, remainingLeaseInput, floorAreaInput))
 
+        if estimatedResalePrice < 0:
+            estimatedResalePrice = 'Error. Unable to provide an accurate estimate of the flat’s selling price'
         return render(request, "househunt/estimate_result.html", {"estimatedResalePrice": estimatedResalePrice})
 
 # def estimate(request):
