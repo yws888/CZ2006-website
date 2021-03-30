@@ -185,8 +185,8 @@ class MapView(View):
         flat = HDBResaleFlat.objects.get(id=id)
 
         context = {
-            'town': flat.town,
-            'streetName': flat.streetName, }
+            'town': flat.getTown(),
+            'streetName': flat.getStreetName(), }
         return render(request, self.template_name, context)
 
 class EstimateView(View):

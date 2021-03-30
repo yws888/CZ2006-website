@@ -75,5 +75,11 @@ class HDBResaleFlat(models.Model):
     remainingLease = models.IntegerField(blank = True) #calculated by subtracting leaseCommencementYear from 2021
     resalePrice = models.FloatField(blank = True)
 
+    def getTown(self):
+        return self.town
+
+    def getStreetName(self):
+        return self.streetName
+
     def __str__(self):
          return self.streetName
