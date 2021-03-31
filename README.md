@@ -4,7 +4,13 @@
 ## Setup (for Mac)
 Change Directory to the root of this repository.
 
-Set up virtual environment
+Create virtual environment
+
+```
+virtualenv proj_env
+```
+
+Activate virtual environment
 ```
 source proj_env/bin/activate
 ```
