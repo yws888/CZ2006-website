@@ -1,5 +1,6 @@
 from django import forms
 from .models import HDBResaleFlat
+from django.core import validators
 
 class HDBSearchForm(forms.ModelForm):
     class Meta:
@@ -27,17 +28,20 @@ class HDBEstimateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['flatType'].required = True
-        self.fields['remainingLease'].required = True
+        #self.fields['remainingLease'].required = True
         self.fields['town'].required = True
         self.fields['floorArea'].required = True
         self.fields['flatModel'].required = True
+
+    remainingLease = forms.IntegerField(label='Remaining Lease in years:', required = True,
+                                        validators=[validators.MaxValueValidator(99), validators.MinValueValidator(0)])
 
     class Meta:
         model = HDBResaleFlat
 
         fields = [
             'flatType',
-            'remainingLease',
+            #'remainingLease',
             'town',
             # 'monthOfSale',
             # 'storeyRange',
@@ -46,31 +50,19 @@ class HDBEstimateForm(forms.ModelForm):
         ]
         labels = {
             "flatType": "Flat Type",
-            'remainingLease':'Remaining Lease in years',
+            #'remainingLease':'Remaining Lease in years',
             "floorArea": "Floor area (in sqm)",
             "flatModel": "Flat Model",
         }
+
+
 
 class CalculateForm(forms.Form):
     monthlyIncome = forms.IntegerField(label='Enter Monthly Income:')
     monthlyDebt = forms.IntegerField(label='Enter Monthly Debt:')
     interestRate = forms.FloatField(label='Enter Loan Interest Rate % (to 1 d.p.):')
     downPayment = forms.IntegerField(label='Enter cash towards down payment:')
+
+
     # savings = forms.IntegerField(label='Enter savings:')
     # cpfBalance = forms.IntegerField(label='Enter CPF Balance:')
-#
-# class RawHDBSearchForm(forms.Form):
-#     flatType       = forms.CharField(label='Flat Type', widget=forms.TextInput(attrs={"placeholder": "Your title"}))
-#     description = forms.CharField(
-#         required=False,
-#         widget=forms.Textarea(
-#             attrs={
-#                 "placeholder": "Your description",
-#                 "class": "new-class-name two",
-#                 "id": "my-id-for-textarea",
-#                 "rows": 20,
-#                 'cols': 120
-#             }
-#         )
-#     )
-#     price       = forms.DecimalField(initial=199.99)

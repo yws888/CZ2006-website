@@ -18,7 +18,7 @@ urlpatterns = [
     path('search/<int:price>',views.SearchWithPriceView.as_view(), name='househunt-search-w-price'),
     path('search/result/',views.SearchResultView.as_view(), name='househunt-search-result'),
     path('estimate/',views.EstimateView.as_view(), name='househunt-estimate'),
-    path('estimate/result/',views.EstimateView.as_view(), name='househunt-estimate-result'),
+    #path('estimate/result/',views.EstimateView.as_view(), name='househunt-estimate-result'),
     path('map/<int:id>/',views.MapView.as_view(), name='househunt-map'),
 
 ]

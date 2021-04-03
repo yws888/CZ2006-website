@@ -97,7 +97,11 @@ class CalculateView(View):
         res = (((monthlyIncome*0.28)-monthlyDebt)*12)/interestRate * (1-1/(math.pow((1+interestRate), 30))) + downPayment
         # res = float("{:.2f}".format(res))
         res = int(res)
-        return render(request, "househunt/result.html", {"result": res})
+        if res < 0:
+            isPositive = False
+        else:
+            isPositive = True
+        return render(request, "househunt/result.html", {"result": res, "isPositive": isPositive})
 
 # def result(request):
 #     monthlyIncome = int(request.GET['monthlyIncome'])
@@ -196,11 +200,17 @@ class EstimateView(View):
 
         context = {
             'form': form,
-            'title': 'Estimate', }
+            'title': 'Estimate',
+        }
+
         return render(request, self.template_name,context )
 
 
     def post(self, request):
+        form = HDBEstimateForm(request.POST)
+        if not form.is_valid():
+            return render(request, self.template_name, {
+                'form': form})
         flatModelInput = request.POST['flatModel']
         townInput = request.POST['town']
         flatTypeInput = request.POST['flatType']

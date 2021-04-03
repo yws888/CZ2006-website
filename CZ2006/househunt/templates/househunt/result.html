@@ -3,6 +3,8 @@
 {% block content %}
 <h1> Maximum affordable price = {{result}} </h1>
 <a href="{% url 'househunt-calculate' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">Calculate maximum affordable price</a>
-<a href="{% url 'househunt-search' %}{{result}}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">Search for a flat with this price</a>
+{% if isPositive %}
+    <a href="{% url 'househunt-search' %}{{result}}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">Search for a flat with this price</a>
+{% endif %}
 
 {% endblock %}
