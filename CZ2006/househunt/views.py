@@ -20,7 +20,12 @@ from utility.estimateResalePrice import calculatePrice
 
 class HomeView(View):
     template_name = "househunt/home.html"
-    def get(self, request, id=None, *args, **kwargs):
+    def get(self, request):
+        """
+
+        @param request:
+        @return:
+        """
         context = {'title': 'Home'}
         return render(request, self.template_name, context)
 
@@ -34,7 +39,7 @@ class HomeView(View):
 
 class AboutView(View):
     template_name = "househunt/about.html"
-    def get(self, request, id=None, *args, **kwargs):
+    def get(self, request):
         context = {'title': 'About'}
         return render(request, self.template_name, context)
 
@@ -118,7 +123,7 @@ class CalculateView(View):
 
 class SearchView(View):
     template_name = "househunt/search.html"
-    def get(self, request, id=None, *args, **kwargs):
+    def get(self, request):
         form = HDBSearchForm(request.GET or None)
 
         context = {
@@ -151,6 +156,11 @@ class SearchWithPriceView(View):
 class SearchResultView(View):
 
     def get(self, request):
+        """
+        Display Search Results
+        @param request:
+        @return:
+        """
         queryset = HDBResaleFlat.objects.all()
 
         if (request.GET.get('flatType')) is not '':
