@@ -1,9 +1,9 @@
 import math
 
 from django.shortcuts import render
-from .forms import HDBSearchForm, HDBEstimateForm, CalculateForm
+from .forms import HDBSearchForm, HDBEstimateForm, CalculateForm, HDBMapDataForm
 from .models import HDBResaleFlat
-from django.views.generic import ListView
+from django.views.generic import ListView, FormView
 from django_tables2 import SingleTableView, RequestConfig
 from django.views import View
 
@@ -17,6 +17,21 @@ sys.path.append("..") # Adds higher directory to python modules path.
 
 from utility.estimateResalePrice import calculatePrice
 
+# class SampleFormView(FormView):
+#     form_class = SampleForm(initial = {'address': '24 BEO CRES'})
+#     template_name = "househunt/gmap.html"
+
+class GoogleMapView(View):
+    def get(self, request, id):
+        #form = HDBSearchForm(request.GET or None, initial = {'resalePrice': price})
+
+        flat = HDBResaleFlat.objects.get(id=id)
+
+        form = HDBMapDataForm(request.GET or None, initial = {'address': flat.blockNo + " " + flat.getStreetName()})
+
+        context = {
+        'form': form, }
+        return render(request, "househunt/gmap.html", context)
 
 class HomeView(View):
     """
@@ -434,7 +449,9 @@ class MapView(View):
 
         context = {
             'town': flat.getTown(),
-            'streetName': flat.getStreetName(), }
+            'streetName': flat.getStreetName(),
+            'blockNo': flat.blockNo,
+        }
         return render(request, self.template_name, context)
 
 class EstimateView(View):

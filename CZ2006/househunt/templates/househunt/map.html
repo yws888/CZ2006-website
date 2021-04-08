@@ -5,11 +5,13 @@
 <script type="text/javascript">
 var town = "{{town}}";
 var streetName = "{{streetName}}";
+var blockNo = "{{blockNo}}";
 
 //var x = "Yishun" + "," + "Yishun Ave 11";
-var x = town + "," + streetName;
+//var x = town + "," + streetName;
+var x = town + "," + blockNo + " " + streetName;
 
-var requestlink ="https://maps.googleapis.com/maps/api/streetview?size=400x400&location=" + x + "&key=AIzaSyAT5ls2tvRCs9x0p4aVd7984HNocfpAOXE";
+var requestlink ="https://maps.googleapis.com/maps/api/streetview?size=600x600&location=" + x + "&key=AIzaSyAT5ls2tvRCs9x0p4aVd7984HNocfpAOXE";
 
 var y = document.createElement("IMG");
 y.setAttribute("src",requestlink);

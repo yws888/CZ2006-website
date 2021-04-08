@@ -8,4 +8,5 @@ class HDBResaleFlatTable(tables.Table):
         template_name = "django_tables2/bootstrap.html"
         exclude = ("id", )
         # fields = ("month", "" )
-    image = TemplateColumn(template_name='househunt/map_button.html')
+    Image = TemplateColumn(template_name='househunt/map_button.html')
+    streetView = TemplateColumn(template_name='househunt/gmap_button.html')

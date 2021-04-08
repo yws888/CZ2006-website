@@ -20,5 +20,6 @@ urlpatterns = [
     path('estimate/',views.EstimateView.as_view(), name='househunt-estimate'),
     #path('estimate/result/',views.EstimateView.as_view(), name='househunt-estimate-result'),
     path('map/<int:id>/',views.MapView.as_view(), name='househunt-map'),
+    path('gmap/<int:id>/',views.GoogleMapView.as_view(), name='househunt-gmap'),
 
 ]

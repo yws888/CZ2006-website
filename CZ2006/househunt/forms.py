@@ -1,6 +1,17 @@
 from django import forms
-from .models import HDBResaleFlat
+from .models import HDBResaleFlat, HDBMapData
 from django.core import validators
+from django_google_maps.widgets import GoogleMapsAddressWidget
+
+
+class HDBMapDataForm(forms.ModelForm):
+
+    class Meta(object):
+        model = HDBMapData
+        fields = ['address', 'geolocation']
+        widgets = {
+            "address": GoogleMapsAddressWidget,
+        }
 
 class HDBSearchForm(forms.ModelForm):
     """
