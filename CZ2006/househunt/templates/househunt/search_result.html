@@ -1,11 +1,4 @@
 {% extends "househunt/base.html" %}
-{% block additional_styles %}
-<style>
-   body {
-    background: white;
-   }
-</style>
-{% endblock %}
 {% load render_table from django_tables2 %}
 
 {% block content %}
@@ -13,7 +6,7 @@
  {% render_table table %}
 <br>
 <br>
-<a href="{% url 'househunt-search' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue" style = "margin-left:30px;">Search for another flat</a>
+<a href="{% url 'househunt-search' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">Search for another flat</a>
 <br>
 <br>
 
