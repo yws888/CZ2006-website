@@ -1,6 +1,8 @@
 # CZ2006
  CZ2006 website
 
+Deployed at http://wenshiuanthegod.pythonanywhere.com/
+
 ## Setup (for Mac)
 Change Directory to the root of this repository.
 
