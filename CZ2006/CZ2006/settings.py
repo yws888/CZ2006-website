@@ -25,7 +25,7 @@ SECRET_KEY = '59gs@ljk^7du1d1skpef2ypr)oc3$7v0j8z@g#@@u-i@$aykb3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 GOOGLE_MAPS_API_KEY = 'AIzaSyAT5ls2tvRCs9x0p4aVd7984HNocfpAOXE'
 
@@ -123,3 +123,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = '/CZ2006-website/CZ2006/househunt/static'
