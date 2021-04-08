@@ -1,1 +1,1 @@
-web: gunicorn CZ2006.wsgi
+web: gunicorn CZ2006.CZ2006.wsgi
