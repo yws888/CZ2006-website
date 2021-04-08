@@ -2,12 +2,12 @@
 {% block content %}
 
     <br>
-    <h1>Resale Flat Prices over the years</h1>
+    <h1 style="color:white; margin-left: 10vh; margin-top: 60px;">Resale price by year</h1>
     <br>
     {% load static %}
+    <img src="{% static 'year.png' %}" style="margin-top:20px; margin-left:100px;height:90vh; width:150vh">
+    <a href="{% url 'househunt-visualise' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue" style="margin-left:90px">Return</a>
 
-    <a href="{% url 'househunt-visualise' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">Return</a>
-    <img src="{% static 'year.png' %}">
     <br>
     <br>
 

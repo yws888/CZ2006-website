@@ -2,12 +2,11 @@
 {% block content %}
 
     <br>
-    <h1>Resale Flat Prices for each Flat Type</h1>
+    <h1 style="color:white; margin-left: 10vh; margin-top: 80px;">Resale price by flat_type</h1>
     <br>
     {% load static %}
-
-    <a href="{% url 'househunt-visualise' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">Return</a>
-    <img src="{% static 'flat_type.png' %}">
+    <img src="{% static 'flat_type.png' %}" style="margin-top:20px; margin-left:100px;height:90vh; width:150vh">
+    <a href="{% url 'househunt-visualise' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue" style="margin-left:90px">Return</a>
     <br>
     <br>
 
