@@ -3,6 +3,9 @@ from .models import HDBResaleFlat
 from django.core import validators
 
 class HDBSearchForm(forms.ModelForm):
+    """
+    Creating HDBEstimateForm from @model:'models.HDBResaleFlat' with the use of inner Meta class
+    """
     class Meta:
         model = HDBResaleFlat
 
@@ -25,7 +28,15 @@ class HDBSearchForm(forms.ModelForm):
         }
 
 class HDBEstimateForm(forms.ModelForm):
+    """
+    Creating HDBEstimateForm from @model:'models.HDBResaleFlat' with the use of inner Meta class
+    """
     def __init__(self, *args, **kwargs):
+        """
+        Checking whether the fields are filled and ensure that remainingLease is between the value of 0 and 99
+        @param args: pass the variable number of non keyword arguments to the function
+        @param kwargs: pass the variable length of keyword arguments to the function
+        """
         super().__init__(*args, **kwargs)
         self.fields['flatType'].required = True
         #self.fields['remainingLease'].required = True
@@ -58,6 +69,9 @@ class HDBEstimateForm(forms.ModelForm):
 
 
 class CalculateForm(forms.Form):
+    """
+    Creating CalculateForm
+    """
     monthlyIncome = forms.IntegerField(label='Enter Monthly Income:')
     monthlyDebt = forms.IntegerField(label='Enter Monthly Debt:')
     interestRate = forms.FloatField(label='Enter Loan Interest Rate % (to 1 d.p.):')

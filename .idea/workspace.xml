@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="679d9bef-b10c-4f74-b13d-0227de00df29" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/CZ2006 website.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CZ2006 website.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="679d9bef-b10c-4f74-b13d-0227de00df29" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,6 +28,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
   </component>
@@ -44,7 +40,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1615653514184</updated>
+      <workItem from="1617866470869" duration="10587000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

@@ -19,12 +19,25 @@ from utility.estimateResalePrice import calculatePrice
 
 
 class HomeView(View):
+    """
+    Calling Home View
+    """
     template_name = "househunt/home.html"
     def get(self, request):
         """
+        Display Home View
+        @param self:
+        @param request: Request object to generate response for Home
 
-        @param request:
-        @return:
+        **Context**
+        Will call it just before rendering the template
+        ''title''
+            Title called Home
+
+        **Template**
+        @template:'househunt/home.html'
+
+        @return: an HTTPResponse object with the template of Home
         """
         context = {'title': 'Home'}
         return render(request, self.template_name, context)
@@ -38,8 +51,26 @@ class HomeView(View):
 
 
 class AboutView(View):
+    """
+    Calling About View
+    """
     template_name = "househunt/about.html"
     def get(self, request):
+        """
+        Display About View
+        @param self:
+        @param request: Request object to generate response for About
+
+        **Context**
+        Will call it just before rendering the template
+        ''title''
+            Title called About
+
+        **Template**
+        @template:'househunt/about.html'
+
+        @return: an HTTPResponse object with the template of About
+        """
         context = {'title': 'About'}
         return render(request, self.template_name, context)
 
@@ -47,35 +78,138 @@ class AboutView(View):
 #     return render(request, 'househunt/about.html', {'title': 'About'})
 
 class Visualise(View):
+    """
+    Calling Visualise View with 3 options: By town, by flat type, by year of sale
+    """
     template_name = "househunt/visualise.html"
     def get(self, request, id=None, *args, **kwargs):
+        """
+        Display Visualise View
+        @param self:
+        @param request: Request object to generate response for Visualise
+        @param id:
+        @param args: pass the variable number of non keyword arguments to the function
+        @param kwargs: pass the variable length of keyword arguments to the function
+
+        **Context**
+        ''title''
+            Title called Visualisations
+
+        **Template**
+        @template:'househunt/visualise.html'
+
+        @return: an HTTPResponse object with the template of Visualise
+        """
         context = {'title': 'Visualisations'}
         return render(request, self.template_name, context)
 
 class VisualiseTown(View):
+    """
+    Calling Visualise By Town View
+    """
     template_name = "househunt/visualise-town.html"
     def get(self, request, id=None, *args, **kwargs):
+        """
+        Display Visualise By Town View
+        @param self:
+        @param request: Request object to generate response for Visualise By Town
+        @param id:
+        @param args: pass the variable number of non keyword arguments to the function
+        @param kwargs: pass the variable length of keyword arguments to the function
+
+        **Context**
+        The static image of Price vs Town bar graph
+
+        **Template**
+        @template:'househunt/visualise-town.html'
+
+        @return: an HTTPResponse object with the template of Visualise By Town
+        """
         context = readData(barPriceVsTown())
         context.dataToGraph()
         return render(request, self.template_name)
 
 class VisualiseFlatType(View):
+    """
+    Calling Visualise by Flat Type View
+    """
     template_name = "househunt/visualise-flat-type.html"
     def get(self, request, id=None, *args, **kwargs):
+        """
+        Display Visualise By Flat Type View
+        @param self:
+        @param request: Request object to generate response for Visualise By Flat Type
+        @param id:
+        @param args: pass the variable number of non keyword arguments to the function
+        @param kwargs: pass the variable length of keyword arguments to the function
+
+        **Context**
+        The static image of Price vs Flat Type graph
+
+        **Template**
+        @template:'househunt/visualise-flat-type.html'
+
+        @return: an HTTPResponse object with the template of Visualise By Flat Type
+        """
         context = readData(barPriceVsFlatType())
         context.dataToGraph()
         return render(request, self.template_name)
 
 class VisualiseYear(View):
+    """
+    Calling Visualise by Year View
+    """
     template_name = "househunt/visualise-year.html"
     def get(self, request, id=None, *args, **kwargs):
+        """
+        Display Visualise By Year View
+        @param self:
+        @param request: Request object to generate response for Visualise By Year
+        @param id:
+        @param args: pass the variable number of non keyword arguments to the function
+        @param kwargs: pass the variable length of keyword arguments to the function
+
+        **Context**
+        The static image of Price vs Year graph
+
+        **Template**
+        @template:'househunt/visualise-year.html'
+
+        @return: an HTTPResponse object with the template of Visualise By Year
+        """
         context = readData(pointPriceVsYear())
         context.dataToGraph()
         return render(request, self.template_name)
 
 class CalculateView(View):
+    """
+    Calling Calculate View, related to @model:'forms.CalculateForm'
+    """
     template_name = "househunt/calculate.html"
     def get(self, request, id=None, *args, **kwargs):
+        """
+        Display Calculate View which requires user to input certain personal information for the system to calculate the maximum affordable price
+        @param self:
+        @param request: Request object to generate response for Calculate
+        @param id:
+        @param args: pass the variable number of non keyword arguments to the function
+        @param kwargs: pass the variable length of keyword arguments to the function
+
+        **Context**
+        ''title''
+            Title named Calculate
+        ''form''
+            CalculateForm from @model:'forms.CalculateForm' that requires user to input:
+            - monthly income
+            - monthly debt
+            - interest rate
+            - down payment
+
+        **Template**
+        @template: 'househunt/calculate.html'
+
+        @return: an HTTPResponse object with the template of Calculate with the CalculateForm
+        """
         form = CalculateForm(request.POST or None)
 
         context = {
@@ -91,6 +225,22 @@ class CalculateView(View):
     #     return render(request, "househunt/calculate.html", context)
 
     def post(self, request, id=None, *args, **kwargs):
+        """
+        Display the result of the Calculate View depending on user's input
+        @param self:
+        @param request: Request object to generate response
+        @param id:
+        @param args: pass the variable number of non keyword arguments to the function
+        @param kwargs: pass the variable length of keyword arguments to the function
+
+        **Context**
+        ''result''
+            Returns the output of the user's inputs in the form
+        ''isPositive''
+            Check whether the result is positive
+
+        @return: an HTTPResponse object with the template of Calculate and the result of the user's inputs in the CalculateForm
+        """
         monthlyIncome = int(request.POST['monthlyIncome'])
         monthlyDebt = int(request.POST['monthlyDebt'])
         interestRate = float(request.POST['interestRate'])/100
@@ -122,8 +272,33 @@ class CalculateView(View):
 #     return render(request, "househunt/result.html", {"result": res})
 
 class SearchView(View):
+    """
+    Calling SearchView, related to @model:'forms.HDBSearchForm'
+    """
     template_name = "househunt/search.html"
     def get(self, request):
+        """
+        Display Search View which requires user to input information for the system to return searches that matches user's input
+        @param self:
+        @param request: Request object to generate response
+
+        **Context**
+        ''title''
+            Title named Search
+        ''form''
+            HDBSearchForm from @model:'forms.HDBSearchForm' that requires user to input:
+            - flat type
+            - remaining lease years
+            - maximum resale price
+            - town
+            - minimum floor area (in sqm)
+            - flat model
+
+        **Template**
+        @template: 'househunt/search.html'
+
+        @return: an HTTPResponse object with the template of Search with the HDBSearchForm
+        """
         form = HDBSearchForm(request.GET or None)
 
         context = {
@@ -132,7 +307,32 @@ class SearchView(View):
         return render(request, self.template_name,context )
 
 class SearchWithPriceView(View):
+    """
+    Calling Search With maximum affordable Price View, related to @model:'forms.HDBSearchForm'
+    """
     def get(self, request, price):
+        """
+        Display Search View which requires user to input information for the system to return searches that matches user's input after finding out his/her maximum affordability
+        @param self:
+        @param request: Request object to generate response
+        @param price: the maximum affordable price from Calculate Maximum Affordability function
+
+        **Context**
+        ''title''
+            Title named Search
+        ''form''
+            HDBSearchForm from @model:'forms.HDBSearchForm' with maximum resale price input filled with the maximum affordable price received that requires user to input:
+            - flat type
+            - remaining lease years
+            - town
+            - minimum floor area (in sqm)
+            - flat model
+
+        **Template**
+        @template: 'househunt/search.html'
+
+        @return: an HTTPResponse object with the template of Search with the HDBSearchForm
+        """
         form = HDBSearchForm(request.GET or None, initial = {'resalePrice': price})
         context = {
         'form': form,
@@ -154,12 +354,23 @@ class SearchWithPriceView(View):
 #     return render(request, "househunt/search.html", context)
 
 class SearchResultView(View):
-
+    """
+    Calling Search Result View, related to @model:'models.HDBResaleFlat' and @model:'forms.HDBSearchForm'
+    """
     def get(self, request):
         """
-        Display Search Results
-        @param request:
-        @return:
+        Display Search Results View based on the users input
+        @param self:
+        @param request: Request object to generate response for SearchResult
+
+        **Context**
+        ''table''
+            Returns the output of the user's inputs in the HDBSearchForm and display in table
+
+        **Template**
+        'househunt/search_result.html'
+
+        @return: an HTTPResponse object with the table of the search results based on the user's inputs in the HDBSearchForm
         """
         queryset = HDBResaleFlat.objects.all()
 
@@ -193,9 +404,32 @@ class SearchResultView(View):
         return render(request,'househunt/search_result.html', {'table': table})
 
 class MapView(View):
+    """
+    Calling Map view, related to @model: 'models.HDBResaleFlat'
+    """
     template_name = "househunt/map.html"
 
     def get(self, request, id):
+        """
+        Display Map View of the flat that user selected
+        @param self:
+        @param request: Request object to generate response for Map View
+        @param id: id of the resale flat
+
+        ''flat''
+            An instance from @model:'models.HDBResaleFlat'
+
+        **Context**
+        ''town''
+            An instance from @model:'models.HDBResaleFlat'
+        ''streeName''
+            An instance from @model:'models.HDBResaleFlat'
+
+        **Template**
+        @template: 'househunt/map.html'
+
+        @return: an HTTPResponse object with the image of the map view based on the flat that user has selected
+        """
         flat = HDBResaleFlat.objects.get(id=id)
 
         context = {
@@ -204,8 +438,35 @@ class MapView(View):
         return render(request, self.template_name, context)
 
 class EstimateView(View):
+    """
+    Calling Estimate View, related to @model:'forms.HDBEstimateForm' and @model:'utility.estimatedResalePrice.calculatePrice'
+    """
     template_name = "househunt/estimate.html"
     def get(self, request, id=None, *args, **kwargs):
+        """
+        Display Estimate View which requires user to input information for the system to return estimated selling price for a resale flat
+        @param self:
+        @param request: Request object to generate response for Estimate
+        @param id:
+        @param args: pass the variable number of non keyword arguments to the function
+        @param kwargs: pass the variable length of keyword arguments to the function
+
+        **Context**
+        ''title''
+            Title named Estimate
+        ''form''
+            HDBEstimateForm from @model:'forms.HDBEstimateForm' that requires user to input:
+            - flat type
+            - remaining lease in years
+            - town
+            - floor area (in sqm)
+            - flat model
+
+        **Template**
+        @template: 'househunt/estimate.html'
+
+        @return: an HTTPResponse object with the template of Estimate and the result of the user's inputs in the HDBEstimateForm
+        """
         form = HDBEstimateForm(request.POST or None)
 
         context = {
@@ -217,6 +478,23 @@ class EstimateView(View):
 
 
     def post(self, request):
+        """
+        Display the result of the Estimate View depending on user's input
+        @param self:
+        @param request: Request object to generate response
+
+        **Context**
+        ''estimatedResalePrice''
+            An int value returned using @model:'utility.estimatedResalePrice.calculatePrice'
+
+        **Template**
+        @template: 'househunt/estimate.html'
+
+        if result is < 0:
+        @return: an HTTPResponse object with the template of Estimate and the error message
+        else:
+        @return: an HTTPResponse object with the template of Estimate and the result of the user's inputs in the HDBEstimateForm
+        """
         form = HDBEstimateForm(request.POST)
         if not form.is_valid():
             return render(request, self.template_name, {

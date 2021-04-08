@@ -3,6 +3,9 @@ from django.db import models
 # Create your models here.
 
 class HDBResaleFlat(models.Model):
+    """
+    Creating the form class
+    """
     FLATTYPES = (
         ('1 ROOM', '1 ROOM'),
          ('2 ROOM', '2 ROOM'),
@@ -76,10 +79,22 @@ class HDBResaleFlat(models.Model):
     resalePrice = models.FloatField(blank = True)
 
     def getTown(self):
+        """
+        gets value of Town
+        @return: value of Town
+        """
         return self.town
 
     def getStreetName(self):
+        """
+        gets value of StreetName
+        @return: value of StreetName
+        """
         return self.streetName
 
     def __str__(self):
-         return self.streetName
+        """
+        gets string representation of the StreetName
+        @return: string value of StreetName
+        """
+        return self.streetName
