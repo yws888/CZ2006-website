@@ -127,3 +127,6 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(os.getcwd(), "CZ2006", "househunt", "static")
 #os.path.join(os., "static")'/CZ2006-website/CZ2006/househunt/static'
+
+import django_heroku
+django_heroku.settings(locals())
