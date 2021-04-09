@@ -52,12 +52,13 @@ class HDBEstimateForm(forms.ModelForm):
         self.fields['flatType'].required = True
         #self.fields['remainingLease'].required = True
         self.fields['town'].required = True
-        self.fields['floorArea'].required = True
+        #self.fields['floorArea'].required = True
         self.fields['flatModel'].required = True
 
     remainingLease = forms.IntegerField(label='Remaining Lease in years:', required = True,
-                                        validators=[validators.MaxValueValidator(99), validators.MinValueValidator(0)])
-
+                                        validators=[validators.MaxValueValidator(99), validators.MinValueValidator(44)])
+    floorArea = forms.IntegerField(label='Floor area (in sqm):', required = True,
+                                        validators=[validators.MaxValueValidator(249), validators.MinValueValidator(0)])
     class Meta:
         model = HDBResaleFlat
 
@@ -67,13 +68,13 @@ class HDBEstimateForm(forms.ModelForm):
             'town',
             # 'monthOfSale',
             # 'storeyRange',
-            'floorArea',
+            #'floorArea',
             'flatModel'
         ]
         labels = {
             "flatType": "Flat Type",
             #'remainingLease':'Remaining Lease in years',
-            "floorArea": "Floor area (in sqm)",
+            #"floorArea": "Floor area (in sqm)",
             "flatModel": "Flat Model",
         }
 
@@ -85,7 +86,7 @@ class CalculateForm(forms.Form):
     """
     monthlyIncome = forms.IntegerField(label='Enter Monthly Income:')
     monthlyDebt = forms.IntegerField(label='Enter Monthly Debt:')
-    interestRate = forms.FloatField(label='Enter Loan Interest Rate % (to 1 d.p.):')
+    interestRate = forms.FloatField(label='Enter Loan Interest Rate % (with decimal point):')
     downPayment = forms.IntegerField(label='Enter cash towards down payment:')
 
 

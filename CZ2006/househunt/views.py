@@ -23,8 +23,6 @@ from utility.estimateResalePrice import calculatePrice
 
 class GoogleMapView(View):
     def get(self, request, id):
-        #form = HDBSearchForm(request.GET or None, initial = {'resalePrice': price})
-
         flat = HDBResaleFlat.objects.get(id=id)
 
         form = HDBMapDataForm(request.GET or None, initial = {'address': flat.blockNo + " " + flat.getStreetName()})
@@ -88,9 +86,6 @@ class AboutView(View):
         """
         context = {'title': 'About'}
         return render(request, self.template_name, context)
-
-# def about(request):
-#     return render(request, 'househunt/about.html', {'title': 'About'})
 
 class Visualise(View):
     """
