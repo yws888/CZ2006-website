@@ -5,9 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CZ2006/CZ2006/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/CZ2006/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CZ2006/CZ2006/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/CZ2006/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CZ2006/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
