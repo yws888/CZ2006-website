@@ -84,10 +84,13 @@ class CalculateForm(forms.Form):
     """
     Creating CalculateForm
     """
-    monthlyIncome = forms.IntegerField(label='Enter Monthly Income:')
-    monthlyDebt = forms.IntegerField(label='Enter Monthly Debt:')
+    monthlyIncome = forms.IntegerField(label='Enter Monthly Income:',
+                                       validators=[validators.MinValueValidator(0)])
+    monthlyDebt = forms.IntegerField(label='Enter Monthly Debt:',
+                                     validators=[validators.MinValueValidator(0)])
     interestRate = forms.FloatField(label='Enter Loan Interest Rate % (with decimal point):')
-    downPayment = forms.IntegerField(label='Enter cash towards down payment:')
+    downPayment = forms.IntegerField(label='Enter cash towards down payment:',
+                                     validators=[validators.MinValueValidator(0)])
 
 
     # savings = forms.IntegerField(label='Enter savings:')
