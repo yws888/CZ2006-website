@@ -18,17 +18,27 @@
         <title> HouseHunt </title>
     {% endif %} -->
 </head>
+{% block additional_styles %}
 <style>
   .content {
-    max-width: 500px;
-    margin: auto;
+	background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(https://www.homeguide.com.sg/wp-content/uploads/2017/09/HDB-Responds-to-Need-for-Flexible-Flat-Layouts-in-Singapore.jpg);
+	background-size: cover;
+	background-position: center;
+    overflow:hidden;
+	height: 160vh;
+   
   }
 </style>
+{% endblock %}
 <body>
     <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="height:13vh;width:215vh; background-color:#303030">
         <div class="container">             <!-- gives content good padding and spacing -->
-          <a class="navbar-brand mr-4" href="{% url 'househunt-home' %}">HouseHunt</a>
+          <a class="navbar-brand mr-4" href="{% url 'househunt-home' %}">
+			<div class="logo-image" style=" width: 130px; margin-top: 10px">
+				<img src="https://i.ibb.co/KzRjt9q/logo.png" class="img-fluid">
+			</div>
+			</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
