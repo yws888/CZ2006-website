@@ -55,6 +55,14 @@ class HomeView(View):
         context = {'title': 'Home'}
         return render(request, self.template_name, context)
 
+# def home(request):
+#
+#     context = { #to pass info to template; can accses data within that template
+#         'title': 'Home'  #add title if u want a title for the page
+#     }
+#     return render(request, 'househunt/home.html', context)
+
+
 class AboutView(View):
     """
     Calling About View
@@ -243,17 +251,9 @@ class CalculateView(View):
 
         @return: an HTTPResponse object with the template of Calculate and the result of the user's inputs in the CalculateForm
         """
-        form = CalculateForm(request.POST)
-        if not form.is_valid():
-            return render(request, self.template_name, {
-                'form': form})
         monthlyIncome = int(request.POST['monthlyIncome'])
         monthlyDebt = int(request.POST['monthlyDebt'])
-
-        interestRate = 0.0
-        if request.POST['interestRate'] != "0":
-            interestRate = float(request.POST['interestRate'])/100
-
+        interestRate = float(request.POST['interestRate'])/100
         downPayment = int(request.POST['downPayment'])
 
         # savings = int(request.POST['savings'])
@@ -268,6 +268,18 @@ class CalculateView(View):
             isPositive = True
         return render(request, "househunt/result.html", {"result": res, "isPositive": isPositive})
 
+# def result(request):
+#     monthlyIncome = int(request.GET['monthlyIncome'])
+#     monthlyDebt = int(request.GET['monthlyDebt'])
+#     interestRate = float(request.GET['interestRate'])/100
+#
+#     # savings = int(request.POST['savings'])
+#     # cpfBalance = int(request.POST['cpfBalance'])
+#
+#     res = (((monthlyIncome*0.28)-monthlyDebt)*12)/interestRate * (1-1/(math.pow((1+interestRate), 30)))
+#     # res = float("{:.2f}".format(res))
+#     res = int(res)
+#     return render(request, "househunt/result.html", {"result": res})
 
 class SearchView(View):
     """
