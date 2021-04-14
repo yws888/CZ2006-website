@@ -1,10 +1,10 @@
 {% extends "househunt/base.html" %}
 
 {% block content %}
-<h1 style="color:white; margin-left: 35vh; padding: 200px; font-size:40px;"> Maximum affordable price = {{result}} </h1>
-<a href="{% url 'househunt-calculate' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue" style="margin-left: 480px;padding:10px;">Calculate maximum affordable price</a>
+<h1> Maximum affordable price = {{result}} </h1>
+<a href="{% url 'househunt-calculate' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">Calculate maximum affordable price</a>
 {% if isPositive %}
-    <a href="{% url 'househunt-search' %}{{result}}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue" style="margin-left:30px;padding: 10px;">Search for a flat with this price</a>
+    <a href="{% url 'househunt-search' %}{{result}}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">Search for a flat with this price</a>
 {% endif %}
 
 {% endblock %}
