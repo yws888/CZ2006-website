@@ -27,6 +27,11 @@ Start the server
 python3 CZ2006/manage.py runserver
 ```
 
+Website should then be accessible at:
+```
+http://localhost:8000/
+```
+
 ## Setup (for Windows)
 Change Directory to the root of this repository.
 
