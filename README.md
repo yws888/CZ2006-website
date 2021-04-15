@@ -4,6 +4,7 @@
 Deployed at http://wenshiuanthegod.pythonanywhere.com/
 
 Documentation can be viewed at http://wenshiuanthegod.pythonanywhere.com/admin/doc
+
 Login with username: a and password: a
 
 ## Setup (for Mac)
