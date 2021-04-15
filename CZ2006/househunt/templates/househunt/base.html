@@ -18,17 +18,27 @@
         <title> HouseHunt </title>
     {% endif %} -->
 </head>
+
 <style>
   .content {
     max-width: 500px;
     margin: auto;
+	background:transparent;
   }
 </style>
+
 <body>
-    <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+{% block additional_styles %}
+	<div style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(https://www.homeguide.com.sg/wp-content/uploads/2017/09/HDB-Responds-to-Need-for-Flexible-Flat-Layouts-in-Singapore.jpg); background-size:cover; background-position:center-top; overflow:hidden; height:160vh;">
+{% endblock %}   
+	<header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <div class="container">             <!-- gives content good padding and spacing -->
-          <a class="navbar-brand mr-4" href="{% url 'househunt-home' %}">HouseHunt</a>
+          <a class="navbar-brand mr-4" href="{% url 'househunt-home' %}">
+			<div class ="logo-image" style ="width:130px; margin-top:10px">
+				<img src="https://i.ibb.co/KzRjt9q/logo.png" class="img-fluid">
+			</div>
+		  </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
@@ -47,6 +57,7 @@
     <main role="main" class="content">
       <div class="row">
         <div>
+	
           {% block content %}{% endblock %}
         </div>
       </div>
@@ -58,5 +69,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	</div>
 </body>
 </html>

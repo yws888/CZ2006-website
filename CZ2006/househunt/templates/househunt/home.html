@@ -4,21 +4,22 @@
     <!--<h1>HouseHunt</h1>-->
     <!--<img src="househunt.jpeg" border ="1">-->
     <br>
-    <p class="lead">A one stop website for finding your ideal HDB</p>
+    <p class="lead text-white" style = "font-size:35px; ">A one stop website for finding your ideal HDB</p> <br>
+	<!-- <p class="lead text-white" style = "font-size:25px; ">Let us guide you HOME</p>      <br> <br> -->
     <p class="lead">
-      <a href="{% url 'househunt-estimate' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">Estimate selling price</a>
+      <a href="{% url 'househunt-estimate' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-transparent">Estimate selling price</a>
       <br>
       <br>
-      <a href="{% url 'househunt-visualise' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">View Data Visualisations</a>
+      <a href="{% url 'househunt-visualise' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-transparent">View Data Visualisations</a>
       <br>
       <br>
-      <a href="{% url 'househunt-search' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">Search for a flat</a>
+      <a href="{% url 'househunt-search' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-transparent">Search for a flat</a>
       <br>
       <br>
-      <a href="{% url 'househunt-calculate' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">Calculate maximum affordable price</a>
+      <a href="{% url 'househunt-calculate' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-transparent">Calculate maximum affordable price</a>
       <br>
       <br>
-        <h3>Dataset used:</h3>
+        <h3 style ="color:white;font-family:system-ui;">Dataset used:</h3>
       <iframe width="600" height="400" src="https://data.gov.sg/dataset/resale-flat-prices/resource/42ff9cfe-abe5-4b54-beda-c88f9bb438ee/view/8481923a-3673-4b4c-b443-5a5bf5127215" frameBorder="0"> </iframe>
     </p>
   </main>
