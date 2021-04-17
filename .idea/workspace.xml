@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="679d9bef-b10c-4f74-b13d-0227de00df29" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/CZ2006/househunt/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CZ2006/househunt/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2006/househunt/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

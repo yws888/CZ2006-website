@@ -19,6 +19,15 @@ class HDBSearchForm(forms.ModelForm):
     """
     Creating HDBEstimateForm from @model:'models.HDBResaleFlat' with the use of inner Meta class
     """
+
+    # remainingLease = forms.IntegerField(label='Remaining Lease in years:',
+    #                                     validators=[validators.MaxValueValidator(99), validators.MinValueValidator(44)])
+    # floorArea = forms.IntegerField(label='Minimum floor area (in sqm):',
+    #                                validators=[validators.MaxValueValidator(249), validators.MinValueValidator(0)])
+    # resalePrice = forms.IntegerField(label='Maximum resale Price:',
+    #                                validators=[validators.MinValueValidator(0)])
+
+
     class Meta:
         model = HDBResaleFlat
 

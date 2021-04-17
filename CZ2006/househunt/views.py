@@ -4,22 +4,16 @@ from django.shortcuts import render
 from .forms import HDBSearchForm, HDBEstimateForm, CalculateForm, HDBMapDataForm
 from .models import HDBResaleFlat
 from django.views.generic import ListView, FormView
-from django_tables2 import SingleTableView, RequestConfig
+from django_tables2 import RequestConfig
 from django.views import View
 
 from .tables import HDBResaleFlatTable
 from .datavis import readData, DataVisualisation, barPriceVsTown, barPriceVsFlatType, pointPriceVsYear
-from django.template import RequestContext
-
 from django.http import HttpResponseRedirect
 import sys
 sys.path.append("..") # Adds higher directory to python modules path.
 
 from utility.estimateResalePrice import calculatePrice
-
-# class SampleFormView(FormView):
-#     form_class = SampleForm(initial = {'address': '24 BEO CRES'})
-#     template_name = "househunt/gmap.html"
 
 class GoogleMapView(View):
     def get(self, request, id):
@@ -54,14 +48,6 @@ class HomeView(View):
         """
         context = {'title': 'Home'}
         return render(request, self.template_name, context)
-
-# def home(request):
-#
-#     context = { #to pass info to template; can accses data within that template
-#         'title': 'Home'  #add title if u want a title for the page
-#     }
-#     return render(request, 'househunt/home.html', context)
-
 
 class AboutView(View):
     """
@@ -227,13 +213,6 @@ class CalculateView(View):
         'title': 'Calculate', }
         return render(request, self.template_name,context )
 
-    # def calculate(self, request):
-    #     form = CalculateForm(request.GET or None)
-    #     context = {
-    #     'form': form,
-    #     'title': 'Calculate', }
-    #     return render(request, "househunt/calculate.html", context)
-
     def post(self, request, id=None, *args, **kwargs):
         """
         Display the result of the Calculate View depending on user's input
@@ -268,19 +247,6 @@ class CalculateView(View):
             isPositive = True
         return render(request, "househunt/result.html", {"result": res, "isPositive": isPositive})
 
-# def result(request):
-#     monthlyIncome = int(request.GET['monthlyIncome'])
-#     monthlyDebt = int(request.GET['monthlyDebt'])
-#     interestRate = float(request.GET['interestRate'])/100
-#
-#     # savings = int(request.POST['savings'])
-#     # cpfBalance = int(request.POST['cpfBalance'])
-#
-#     res = (((monthlyIncome*0.28)-monthlyDebt)*12)/interestRate * (1-1/(math.pow((1+interestRate), 30)))
-#     # res = float("{:.2f}".format(res))
-#     res = int(res)
-#     return render(request, "househunt/result.html", {"result": res})
-
 class SearchView(View):
     """
     Calling SearchView, related to @model:'forms.HDBSearchForm'
@@ -314,7 +280,7 @@ class SearchView(View):
         context = {
             'form': form,
             'title': 'Search', }
-        return render(request, self.template_name,context )
+        return render(request, self.template_name, context )
 
 class SearchWithPriceView(View):
     """
@@ -348,20 +314,6 @@ class SearchWithPriceView(View):
         'form': form,
         'title': 'Search', }
         return render(request, "househunt/search.html", context)
-
-# def search(request):
-#     form = HDBSearchForm(request.GET or None)
-#     context = {
-#          'form': form,
-#           'title': 'Search', }
-#     return render(request, "househunt/search.html", context)
-
-# def searchPrice(request, price):
-#     form = HDBSearchForm(request.GET or None, initial = {'resalePrice': price})
-#     context = {
-#         'form': form,
-#         'title': 'Search', }
-#     return render(request, "househunt/search.html", context)
 
 class SearchResultView(View):
     """
