@@ -9,6 +9,8 @@ class HDBMapDataForm(forms.ModelForm):
     class Meta(object):
         model = HDBMapData
         fields = ['address', 'geolocation']
+        labels = {
+            "address": "Address (Select the text input bar below and press ENTER to view location on Map)",}
         widgets = {
             "address": GoogleMapsAddressWidget,
         }

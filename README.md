@@ -7,6 +7,8 @@ Documentation can be viewed at http://wenshiuanthegod.pythonanywhere.com/admin/d
 
 Login with username: a and password: a
 
+Alternatively, if you want to view the website with http://localhost:8000/, you can follow the instructions below:
+
 ## Setup (for Mac)
 Change Directory to the root of this repository.
 
