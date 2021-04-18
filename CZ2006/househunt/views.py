@@ -474,22 +474,3 @@ class EstimateView(View):
         if estimatedResalePrice < 0:
             estimatedResalePrice = 'Error. Unable to provide an accurate estimate of the flat’s selling price'
         return render(request, "househunt/estimate_result.html", {"estimatedResalePrice": estimatedResalePrice})
-
-# def estimate(request):
-#     form = HDBEstimateForm(request.POST or None)
-#
-#     context = {
-#         'form': form,
-#         'title': 'Estimate', }
-#     return render(request, "househunt/estimate.html", context)
-
-# def estimate_result(request):
-#     flatModelInput = request.POST['flatModel']
-#     townInput = request.POST['town']
-#     flatTypeInput = request.POST['flatType']
-#     floorAreaInput = int(request.POST['floorArea'])
-#     remainingLeaseInput = float(request.POST['remainingLease'])
-# #calculatePrice(town, flatmodel, flattype, remainingl, floorarea):
-#     estimatedResalePrice =int(calculatePrice(townInput, flatModelInput, flatTypeInput, remainingLeaseInput, floorAreaInput))
-#
-#     return render(request, "househunt/estimate_result.html", {"estimatedResalePrice": estimatedResalePrice})

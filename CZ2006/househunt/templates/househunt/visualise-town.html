@@ -4,12 +4,14 @@
     <br>
     <h1 style="margin-top:10%; color:white; width:100vh; margin-left:-25%;">Resale Flat Prices in each Town</h1>
     <br>
+
     {% load static %}
 
     <img src="{% static 'town.png' %}" style = "margin-top:3%;margin-left:-25%;">
-	<a href="{% url 'househunt-visualise' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue" style = "margin-left:1%">Return</a>
+	<!-- <a href="{% url 'househunt-visualise' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue" style = "margin-left:1%">Return</a> -->
     <br>
     <br>
+    <a href="{% url 'househunt-visualise' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-blue" style ="margin: auto">Return</a>
 
     
 {% endblock content %}
