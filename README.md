@@ -3,10 +3,6 @@
 
 Deployed at http://wenshiuanthegod.pythonanywhere.com/
 
-Documentation can be viewed at http://wenshiuanthegod.pythonanywhere.com/admin/doc
-
-Login with username: a and password: a
-
 Demo video link: https://www.youtube.com/watch?v=kISS3fGE3pM
 
 Alternatively, if you want to view the website with http://localhost:8000/, you can follow the instructions below:
